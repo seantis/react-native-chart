@@ -25,12 +25,10 @@ export default class Grid extends Component {
 		const horizontalRange = [];
 		const verticalRange = [];
 		const xData = uniqueValuesInDataSets(this.props.data || [[]], 0);
-		const yData = uniqueValuesInDataSets(this.props.data || [[]], 1);
-		const horizontalSteps = (yData.length < this.props.verticalGridStep) ? yData.length : this.props.verticalGridStep;
 		let stepsBetweenVerticalLines = this.props.horizontalGridStep ? Math.round(xData.length / this.props.horizontalGridStep) : 1;
 		if (stepsBetweenVerticalLines < 1) stepsBetweenVerticalLines = 1;
 
-		for (let i = horizontalSteps; i > 0; i--) horizontalRange.push(i);
+		for (let i = this.props.verticalGridStep; i > 0; i--) horizontalRange.push(i);
 		for (let i = xData.length - 1; i > 0; i -= stepsBetweenVerticalLines) verticalRange.push(i);
 
 		const containerStyle = { width: this.props.width, height: this.props.height, position: 'absolute', left: 0 };
